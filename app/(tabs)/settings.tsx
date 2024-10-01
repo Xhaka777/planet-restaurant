@@ -23,7 +23,9 @@ const Setting = () => {
           <View className='flex-1 justify-end pt-2'>
             <CustomButton
               title="Log out"
+              handlePress={() => ""}
               containerStyles="mt-7"
+              isLoading={false}
             />
           </View>
         </View>
