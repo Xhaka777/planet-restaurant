@@ -4,10 +4,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { icons } from '@/constants'
 import Home from './home'
 import Setting from './settings'
+import { useTheme } from '@/context/ThemeProvider'
 
 const Tab = createBottomTabNavigator()
 
-const TabIcon = ({ icon, color, name, focused }) => {
+interface TabIconProps {
+    icon: any;
+    color: string;
+    name: string;
+    focused: any;
+}
+
+const TabIcon = ({ icon, color, name, focused }: TabIconProps) => {
     return (
         <View className='flex items-center justify-center gap-2'>
             <Image
