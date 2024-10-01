@@ -3,9 +3,8 @@ import React from 'react'
 
 interface CustomButtonProps {
     title: string;
-    handlePress: () => void;
+    handlePress?: () => any;
     containerStyles: string;
-    textStyles: string;
     isLoading: boolean;
 }
 
@@ -13,7 +12,6 @@ const CustomButton = ({
     title,
     handlePress,
     containerStyles,
-    textStyles,
     isLoading
 }: CustomButtonProps) => {
     return (
@@ -24,7 +22,7 @@ const CustomButton = ({
                 }`}
             disabled={isLoading}
         >
-            <Text className={`text-primary font-psemibold text-lg ${textStyles}`}>
+            <Text className={`text-primary font-psemibold text-lg`}>
                 {title}
             </Text>
 

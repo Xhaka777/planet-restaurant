@@ -3,6 +3,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ScrollView, Dimensions, Alert, Image } from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 import FormField from "@/components/FormField";
+import CustomButton from "@/components/CustomButton";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const SignIn = () => {
     const [isSubmitting, setSubmitting] = useState(false);
@@ -38,6 +40,19 @@ const SignIn = () => {
                         handleChangeText={setPassword}
                         otherStyles="mt-7"
                         placeholder="Enter your password"
+                    />
+
+                    <CustomButton 
+                        title="Sign In"
+                        handlePress={() => navigation.navigate("(tabs)")}
+                        containerStyles="mt-7"
+                        isLoading={isSubmitting}
+                    />    
+
+                    <MaterialCommunityIcons 
+                        name="face-recognition"
+                        size={24}
+                        color="black"
                     />
 
                     <View className="flex justify-center t-5 flex-row gap-2">
