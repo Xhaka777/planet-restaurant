@@ -1,11 +1,34 @@
-import { View, Text } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView } from 'react-native'
 import React from 'react'
+import CustomButton from '../../components/CustomButton'
+import { useTheme } from '@/context/ThemeProvider'
 
 const Setting = () => {
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <View>
-      <Text>settings</Text>
-    </View>
+    <SafeAreaView
+      className='h-full'
+      style={{ backgroundColor: theme.background }}
+    >
+      <ScrollView>
+        <View className='flex mt-12 p-4'>
+          <Text className='text-2xl font-semibold mt-2 font-psemibold'
+            style={{ color: theme.text }}>
+            Settings
+          </Text>
+          <View className='justify-center items-center pt-10'>
+            <SettingCard />
+          </View>
+          <View className='flex-1 justify-end pt-2'>
+            <CustomButton
+              title="Log out"
+              containerStyles="mt-7"
+            />
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   )
 }
 
