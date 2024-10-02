@@ -120,7 +120,7 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
                         </TouchableOpacity>
                     )}
                     keyExtractor={(item) => item.id.toString()}
-                    contentContainerStyle={{ columnGap: 12}}
+                    contentContainerStyle={{ columnGap: 12 }}
                     horizontal
                     showsHorizontalScrollIndicator={false}
                 />
@@ -128,12 +128,12 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
             <FlatList
                 data={stocks}
                 keyExtractor={(item) => item.id.toString()}
-                renderItem={({item}) => (
+                renderItem={({ item }) => (
                     <ItemCard name={item.name} image={item.cover} price={item.quantity} />
                 )}
-                contentContainerStyle={{ paddingBottom: 100}}
+                contentContainerStyle={{ paddingBottom: 100 }}
             />
-            <Button title='DELETE' onPress={() => deleteStock()}/>
+            <Button title='DELETE' onPress={() => deleteStock()} />
         </SafeAreaView>
     )
 
