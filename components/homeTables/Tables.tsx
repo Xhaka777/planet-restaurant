@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Animated, Dimensions, FlatList } from "react-native";
 import { CARD_HEIGHT } from "./Cards"
+import TableCard from "./TableCard";
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 const useLazyRef = <T extends object>(initializer: () => T) => {
