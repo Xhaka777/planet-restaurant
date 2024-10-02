@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { Animated, Dimensions, FlatList } from "react-native";
-import 
 import { CARD_HEIGHT } from "./Cards"
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
