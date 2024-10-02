@@ -1,6 +1,7 @@
 import { View, Text, SafeAreaView, ScrollView } from 'react-native'
 import React from 'react'
 import CustomButton from '../../components/CustomButton'
+import SettingCard from '@/components/SettingCard'
 import { useTheme } from '@/context/ThemeProvider'
 
 const Setting = () => {

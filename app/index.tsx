@@ -5,7 +5,6 @@ import { images } from "@/constants";
 import CustomButton from "@/components/CustomButton";
 import { useGlobalContext } from "@/context/GlobalProvider";
 import { useNavigation } from "@react-navigation/native";
-import { Redirect } from "expo-router";
 
 
 const Welcome = () => {
