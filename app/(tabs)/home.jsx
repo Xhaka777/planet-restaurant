@@ -10,7 +10,8 @@ import {
 } from "react-native";
 
 import { images } from "../../constants";
-import { SearchInput, Table } from "../../components";
+import SearchInput from "@/components/SearchInput";
+import Table from "@/components/homeTables/Tables";
 import { useSelector } from "react-redux";
 import { useTheme } from "@/context/ThemeProvider";
 import { useNavigation } from "@react-navigation/native";
