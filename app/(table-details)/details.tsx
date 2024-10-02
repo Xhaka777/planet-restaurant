@@ -17,7 +17,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useSQLiteContext } from 'expo-sqlite'
 import { getStockList } from "@/api/stocks/stockApi"
 import { getStocks } from '@/database/stockModel'
-import { Stock } from '@/types'
+import { Stock } from '../types/Stock'
 
 interface Item {
     name: string;
