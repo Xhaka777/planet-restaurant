@@ -5,5 +5,6 @@ import SearchInput from './SearchInput'
 import Table from './homeTables/Tables'
 import Cards from './homeTables/Cards'
 import TableCard from './homeTables/TableCard'
+import ItemCard from './ItemCard'
 
-export default { CustomButton, FormField, SettingCard, SearchInput,Table, TableCard, Cards } 
+export default { CustomButton, FormField, SettingCard, SearchInput, Table, TableCard, Cards, ItemCard } 
