@@ -42,3 +42,5 @@ const SearchInput = () => {
         </View>
     )
 }
+
+export default SearchInput
