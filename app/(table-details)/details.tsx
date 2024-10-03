@@ -16,8 +16,8 @@ import ItemCard from '@/components/ItemCard'
 import { useNavigation } from '@react-navigation/native'
 import { useSQLiteContext } from 'expo-sqlite'
 import { getStockList } from "@/api/stocks/stockApi"
-import { getStocks } from '@/database/stockModel'
-import { Stock } from '../types/Stock'
+import { getStock } from '@/database/stockModel'
+import { Stock } from '../../types/Stock'
 
 interface Item {
     name: string;
@@ -78,7 +78,7 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
             //Fetch some stock daddy
             const stockAPI = await getStockList(db, token, user_id);
             if (stockAPI) {
-                const stocksFromDB = await getStocks(db);
+                const stocksFromDB = await getStock(db);
 
                 setStocks(stocksFromDB);
             } else {
