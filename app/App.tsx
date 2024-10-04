@@ -6,6 +6,7 @@ import React from "react";
 import AuthLayout from "./(auth)/_layout";
 import TabLayout from "./(tabs)/_layout";
 import Welcome from "./index";
+import DetailsLayout from "./(table-details)/_layout";
 
 
 const Stack = createNativeStackNavigator();
@@ -19,6 +20,7 @@ const App = () => {
             <Stack.Screen name="index" component={Welcome} />
             <Stack.Screen name="(auth)" component={AuthLayout} />
             <Stack.Screen name="(tabs)" component={TabLayout} />
+            <Stack.Screen name="(table-details)" component={DetailsLayout}/>
           </Stack.Navigator>
         </NavigationContainer>
       </GlobalProvider>
