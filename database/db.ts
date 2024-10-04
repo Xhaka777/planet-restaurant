@@ -3,8 +3,8 @@ import { SQLiteDatabase } from "expo-sqlite";
 async function initializeDatabase(db: SQLiteDatabase) {
     try {
         const stocksQuery = `
-            CREATE TABLE IF NOT EXISTS stock (
-                id INTEGER PRIMARY KET AUTOINCREMENT,
+            CREATE TABLE IF NOT EXISTS stocks (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT,
                 image TEXT,
                 quantity TEXT,
