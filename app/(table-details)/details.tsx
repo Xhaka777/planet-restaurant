@@ -15,7 +15,7 @@ import SearchInput from '@/components/SearchInput'
 import ItemCard from '@/components/ItemCard'
 import { useNavigation } from '@react-navigation/native'
 import { useSQLiteContext } from 'expo-sqlite'
-import { getStockList } from "@/api/stocks/stockApi"
+import { getStockList } from '@/api/stocks/stockApi'
 import { getStock } from '@/database/stockModel'
 import { Stock } from '../../types/Stock'
 
@@ -64,15 +64,6 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
         "723ec245f0a4510bd19b08231fdd956252646360b752345e501507d2db370fab";
     const user_id = "3527";
 
-    const category = async () => {
-        try {
-            const response = await categoryList(token, user_id);
-            setCategoryData(response.data);
-        } catch (error) {
-            console.log(error.message);
-        }
-    }
-
     const fetchStock = async () => {
         try {
             //Fetch some stock daddy
@@ -101,14 +92,13 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
 
     useEffect(() => {
         fetchStock();
-        category();
     }, [])
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
             <View className='flex my-6 px-4 space-y-6 mt-20'>
                 <SearchInput />
-                <FlatList
+                {/* <FlatList
                     data={categoryData}
                     renderItem={({ item }) => (
                         <TouchableOpacity
@@ -123,7 +113,7 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
                     contentContainerStyle={{ columnGap: 12 }}
                     horizontal
                     showsHorizontalScrollIndicator={false}
-                />
+                /> */}
             </View>
             <FlatList
                 data={stocks}
