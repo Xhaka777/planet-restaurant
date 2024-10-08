@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     Button,
     ViewStyle,
-    TextStyle
+    TextStyle,
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useTheme } from '@/context/ThemeProvider'
@@ -18,6 +18,9 @@ import { useSQLiteContext } from 'expo-sqlite'
 import { getStockList } from '@/api/stocks/stockApi'
 import { getStock } from '@/database/stockModel'
 import { Stock } from '../../types/Stock'
+// import { BlurView } from '@react-native-community/blur'
+import { BlurView } from 'expo-blur'
+import { SymbolView } from 'expo-symbols'
 
 interface Item {
     name: string;
@@ -95,7 +98,7 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
     }, [])
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: theme.background }}>
+        <View style={{ flex: 1, backgroundColor: theme.background }}>
             <View className='flex my-6 px-4 space-y-6 mt-20'>
                 <SearchInput />
                 {/* <FlatList
@@ -123,10 +126,61 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
                 )}
                 contentContainerStyle={{ paddingBottom: 100 }}
             />
-            <Button title='DELETE' onPress={() => deleteStock()} />
-        </SafeAreaView>
+            {/* <Button title='DELETE' onPress={() => deleteStock()} /> */}
+            <BlurView
+                experimentalBlurMethod="dimezisBlurView"
+                intensity={90}
+                tint={"light"}
+                style={styless.blur}
+            >
+                <View
+                    style={{
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}
+                >
+                    <View>
+                        <Text style={{ color: "gray" }}>Lifetime savings</Text>
+                        <Text style={{ fontWeight: "bold", fontSize: 28 }}>
+                            $123,823.50
+                        </Text>
+                    </View>
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() => navigation.navigate("Payment")}
+                    >
+                        <SymbolView
+                            size={48}
+                            type="palette"
+                            name="checkmark.circle"
+                            colors={["black", "transparent"]}
+                            style={{ backgroundColor: "#00000010", borderRadius: 50 }}
+                            fallback={
+                                <Button
+                                    title="open"
+                                    onPress={() => navigation.navigate("Payment")}
+                                />
+                            }
+                        />
+                    </TouchableOpacity>
+                </View>
+            </BlurView>
+        </View>
     )
 
 }
 
 export default Details;
+
+const styless = StyleSheet.create({
+    blur: {
+      width: "100%",
+      height: 110,
+      position: "absolute",
+      bottom: 0,
+      borderTopWidth: 1,
+      borderTopColor: "#00000010",
+      padding: 16,
+    },
+  });
