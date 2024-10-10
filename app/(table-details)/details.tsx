@@ -17,14 +17,17 @@ import { useNavigation } from '@react-navigation/native'
 import { useSQLiteContext } from 'expo-sqlite'
 import { getStockList } from '@/api/stocks/stockApi'
 import { getStock } from '@/database/stockModel'
-import { Stock } from '../../types/Stock'
+import { Item } from '@/types/Stock'
 // import { BlurView } from '@react-native-community/blur'
 import { BlurView } from 'expo-blur'
 import { SymbolView } from 'expo-symbols'
+import { useSelector } from 'react-redux'
+import { openCart, selectCartAmount, useCartDispatch } from '@/store'
+import AmountButton from '@/components/AmountButton'
 
-interface Item {
-    name: string;
-}
+// interface Item {
+//     name: string;
+// }
 
 interface Styles {
     tab: (activeCardTypes: string, item: Item) => ViewStyle;
@@ -57,11 +60,15 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
 
     const { theme, toggleTheme } = useTheme();
     const [data, setData] = useState([]);
-    const [stocks, setStocks] = useState<Stock[]>([]);
+    const [stocks, setStocks] = useState<Item[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [categoryData, setCategoryData] = useState([]);
     const [activeCardType, setActiveCardType] = useState("Ushqim")
     const navigation = useNavigation();
+
+    //for cart
+    const amount = useSelector(selectCartAmount)
+    const cartDispatch = useCartDispatch();
 
     const token =
         "723ec245f0a4510bd19b08231fdd956252646360b752345e501507d2db370fab";
@@ -97,35 +104,40 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
         fetchStock();
     }, [])
 
+    const zeroSearch = (
+        <View style={{ padding: 24 }}>
+            <Text style={{ textAlign: 'center' }}>
+                Your Search for {' '}
+                <Text style={{ fontWeight: '600' }}> $$$$$$ </Text>
+            </Text>
+        </View>
+    )
+
     return (
         <View style={{ flex: 1, backgroundColor: theme.background }}>
             <View className='flex my-6 px-4 space-y-6 mt-20'>
                 <SearchInput />
-                {/* <FlatList
-                    data={categoryData}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity
-                            style={{ styles.tab(activeCardType, item) }}
-                        >
-                            <Text style={styles.tabText(activeCardType, item)}>
-                                {item.name}
-                            </Text>
-                        </TouchableOpacity>
-                    )}
-                    keyExtractor={(item) => item.id.toString()}
-                    contentContainerStyle={{ columnGap: 12 }}
-                    horizontal
-                    showsHorizontalScrollIndicator={false}
-                /> */}
             </View>
-            <FlatList
+            {stocks.length ? (
+                <FlatList
+                    data={stocks}
+                    keyExtractor={(item) => item.id.toString()}
+                    renderItem={({ item }) => (
+                        <ItemCard item={item} />
+                    )}
+                    contentContainerStyle={{ paddingBottom: 100 }}
+                />
+            ) : (
+                <>{zeroSearch}</>
+            )}
+            {/* <FlatList
                 data={stocks}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
                     <ItemCard name={item.name} image={item.cover} price={item.quantity} />
                 )}
                 contentContainerStyle={{ paddingBottom: 100 }}
-            />
+            /> */}
             {/* <Button title='DELETE' onPress={() => deleteStock()} /> */}
             <BlurView
                 experimentalBlurMethod="dimezisBlurView"
@@ -157,9 +169,15 @@ const Details: React.FC<{ activeCardTypes: string; item: Item }> = ({
                             colors={["black", "transparent"]}
                             style={{ backgroundColor: "#00000010", borderRadius: 50 }}
                             fallback={
-                                <Button
-                                    title="open"
-                                    onPress={() => navigation.navigate("Payment")}
+                                // <Button
+                                //     title="open"
+                                //     onPress={() => navigation.navigate("Payment")}
+                                // />
+                                <AmountButton
+                                    testID='cart'
+                                    onClick={() => cartDispatch(openCart(true))}
+                                    img={require('@/assets/icons/cart.png')}
+                                    amount={amount}
                                 />
                             }
                         />
@@ -175,12 +193,26 @@ export default Details;
 
 const styless = StyleSheet.create({
     blur: {
-      width: "100%",
-      height: 110,
-      position: "absolute",
-      bottom: 0,
-      borderTopWidth: 1,
-      borderTopColor: "#00000010",
-      padding: 16,
+        width: "100%",
+        height: 110,
+        position: "absolute",
+        bottom: 0,
+        borderTopWidth: 1,
+        borderTopColor: "#00000010",
+        padding: 16,
     },
-  });
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        padding: 12,
+        paddingHorizontal: 16,
+        maxWidth: 1216,
+    },
+    nav: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '50%',
+        maxWidth: 320,
+    }
+});

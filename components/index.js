@@ -6,5 +6,7 @@ import Table from './homeTables/Tables'
 import Cards from './homeTables/Cards'
 import TableCard from './homeTables/TableCard'
 import ItemCard from './ItemCard'
+import Heading from './Heading'
+import AmountButton from './AmountButton'
 
-export default { CustomButton, FormField, SettingCard, SearchInput, Table, TableCard, Cards, ItemCard } 
+export default { CustomButton, FormField, SettingCard, SearchInput, Table, TableCard, Cards, ItemCard, Heading, AmountButton } 

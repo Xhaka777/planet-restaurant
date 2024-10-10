@@ -13,6 +13,7 @@ import eye from "../assets/icons/eye.png";
 import play from "../assets/icons/play.png";
 import setting from "../assets/icons/settings.png";
 import left from '../assets/icons/left.png';
+import cart from '../assets/icons/cart.png'
 
 export default {
   play,
@@ -29,5 +30,6 @@ export default {
   eyeHide,
   eye,
   setting,
-  left
+  left,
+  cart
 };

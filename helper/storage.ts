@@ -1,5 +1,6 @@
-import AsyncStorage from "@react-native-async-storage/async-storage"
-import { Item } from "@/types/Stock"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { Product } from '@/types/Product';
+import { Item } from '@/types/Stock';
 
 export async function setStoreData(data: Item[], key: string): Promise<void>;
 
@@ -12,13 +13,19 @@ export async function setStoreData(data: Item[] | string, key: string) {
     } catch (error) {
         throw new Error(
             error instanceof Error ? error.message : 'Something went wrong'
-        )
+        );
     }
 }
 
 export async function getStoreData(key: 'user'): Promise<string | undefined>;
 
-export async function getStoreData(key: string): Promise<string | Item[] | undefined> {
+export async function getStoreData(
+    key: 'cart'
+): Promise<Item[] | undefined>;
+
+export async function getStoreData(
+    key: string
+): Promise<string | Item[] | undefined> {
     try {
         const value = await AsyncStorage.getItem(key);
 
@@ -28,10 +35,10 @@ export async function getStoreData(key: string): Promise<string | Item[] | undef
     } catch (error) {
         throw new Error(
             error instanceof Error ? error.message : 'Something went wrong'
-        )
+        );
     }
 }
 
 export function clearStoreData(key: string) {
-    AsyncStorage.removeItem(key)
+    AsyncStorage.removeItem(key);
 }

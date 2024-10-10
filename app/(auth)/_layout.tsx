@@ -1,18 +1,28 @@
+import { NavigationProp } from "@react-navigation/native";
 import SignIn from "./sing-in"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 
 const Stack = createNativeStackNavigator();
 
-const AuthLayout = () => {
+type AuthLayoutProps = {
+    navigation: NavigationProp<any, any>;
+}
+
+const AuthLayout = ({ navigation} : AuthLayoutProps) => {
 
     return (
-        <Stack.Navigator>
-            <Stack.Screen
-                name="SignIn"
-                component={SignIn}
-                options={{ headerShown: false }}
-            />
-        </Stack.Navigator>
+        // <Stack.Navigator>
+        //     <Stack.Screen
+        //         name="SignIn"
+        //         component={SignIn}
+        //         options={{ headerShown: false }}
+        //     />
+        // </Stack.Navigator>
+        <>
+          <SignIn 
+            navigation={navigation}
+          />  
+        </>
     )
 }
 

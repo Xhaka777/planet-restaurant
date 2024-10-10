@@ -1,17 +1,22 @@
 import { useState, useEffect } from "react"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, ScrollView, Dimensions, Alert, Image } from 'react-native'
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import FormField from "@/components/FormField";
 import CustomButton from "@/components/CustomButton";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-const SignIn = () => {
+
+type SignInProps = {
+    navigation: NavigationProp<any, any>;
+}
+
+const SignIn = ({ navigation }: SignInProps) => {
     const [isSubmitting, setSubmitting] = useState(false);
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
 
-    const navigation = useNavigation()
+    // const navigation = useNavigation()
 
     return (
         <SafeAreaView className='h-full'>
@@ -42,14 +47,14 @@ const SignIn = () => {
                         placeholder="Enter your password"
                     />
 
-                    <CustomButton 
+                    <CustomButton
                         title="Sign In"
                         handlePress={() => navigation.navigate("(tabs)")}
                         containerStyles="mt-7"
                         isLoading={isSubmitting}
-                    />    
+                    />
 
-                    <MaterialCommunityIcons 
+                    <MaterialCommunityIcons
                         name="face-recognition"
                         size={24}
                         color="black"

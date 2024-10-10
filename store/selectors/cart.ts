@@ -6,5 +6,5 @@ export const selectShowCart = (state: RootState) => state.cart.showCart;
 
 export const selectCartAmount = (state: RootState) =>
   state.cart.cartItems.reduce(function (acc, item) {
-    return acc + item.price;
+    return acc + parseFloat(item.price);
   }, 0);
